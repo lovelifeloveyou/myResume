@@ -77,7 +77,7 @@
 														<li class="iconfont icon-wujiaoxing" v-html="value"></li>
 												</ul>
 										</div>
-                    <div v-if="index === 0"><br /></div>
+                    <div v-if="index === 1"><br /></div>
 								</div>
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-gongju">
@@ -102,7 +102,7 @@
 														</ul>
 												</template>
 										</div>
-                    <div v-if="index === 2"><br /></div>
+                    <div v-if="index === 1"><br /></div>
 								</div>
 						</div>
 
@@ -179,18 +179,18 @@
         '项目描述：基于Vue/Vuex+Element开发一网系统，主要负责事项受理流程、材料问答等功能模块',
         '项目贡献: 基本功能的独立开发，事项模糊搜索显示结果时先渲染骨架屏及关键字的突出') 
       },
+      { name: '统计分析系统', time: '2020.05 - 至今', desc: Array(
+        '项目描述：基于Vue+Echarts开发的统计分析系统，主要负责业务统计部分的所有功能',
+        '项目贡献：编写可复用组件应用到项目中的图表显示中，数据使用excel导出') 
+      }
+    )
+
+    private project2: Array<{ name: string, time: string, desc: string[] }> = Array(
       { name: '云电脑商城端', time: '2020.05 - 至今', desc: Array(
         '项目地址：https://www.dalongyun.com/',
         '项目描述：云电脑产品的商城端页面',
         '项目贡献：基础功能的独立开发,常用组件的封装，使用多坏境多入口打包，将pc端和移动端代码写在同一个项目中') 
       },
-      // { name: '统计分析系统', time: '2020.05 - 至今', desc: Array(
-      //   '项目描述：基于Vue+Echarts开发的统计分析系统，主要负责业务统计部分的所有功能',
-      //   '项目贡献：编写可复用组件应用到项目中的图表显示中，数据使用excel导出') 
-      // }
-    )
-
-    private project2: Array<{ name: string, time: string, desc: string[] }> = Array(
       { name: '云电脑流桌面', time: '2020.05 - 至今', desc: Array(
         '项目地址: http://g.dalongyun.com/games',
         '项目描述：基于webrtc的云游戏，实现用户在PC网页，手机上玩大型网游的移动端应用',
@@ -199,38 +199,44 @@
       }
     )
 
-    private personProjects: Array<{ icon: string, direction: string, list: Array<{ name: string, desc: string[] }> }> = Array(
-      // { icon: 'icon-web1', direction: 'Vue+Typescript仿写CNode社区', list: Array({
-      //   name: 'https://lovelifeloveyou.github.io/vue-ts-cnode/',
+    private personProjects: Array<{ icon: string, direction: string, list: Array<{ name?: string, desc: string[] }> }> = Array(
+      { icon: 'icon-web1', direction: 'vue可视化编辑平台', list: Array({
+        desc: Array(
+          'vue开发的支持可视化编辑、自由拖拽排版、实时预览的,且可生成代码的工具',
+          '设计理念：基于JSON Schema，简单易用。中心思想就是数据控制视图显示，所有的操作功能本质上都是在操作数据。',
+          '使用handlebars作为js模板引擎生成代码,实现拖拽组件到画布区，撤销重做功能，根据组件标识，通过作用域插槽，自定义组件行为'
+        )
+      })},
+      { icon: 'icon-web1', direction: 'Vue+Typescript仿写CNode社区', list: Array({
+        name: 'https://lovelifeloveyou.github.io/vue-ts-cnode/',
+        desc: Array(
+          '基于Vue全家桶+TSX+TypeScript+Less实现的仿CNode中文社区项目',
+          '项目进度：基本实现了CNode中文社区的所有功能'
+        )
+      })},
+      // { icon: 'icon-web1', direction: 'Vue+TypeScript+Element的博客前台', list: Array({
+      //   name: '',
       //   desc: Array(
-      //     '基于Vue全家桶+TSX+TypeScript+Less实现的仿CNode中文社区项目',
-      //     '项目进度：基本实现了CNode中文社区的所有功能',
-      //     '拆分各个组件以供复用，使用vuex状态管理应用信息，使用typescript对各个参数进行严格的约定'
+      //     '实现功能：登录注册、文章列表、github授权登录、点赞与评论、留言、文章归档',
+      //     '使用技术：vue/vuex+typescript+axios+element-ui', 
+      //     '项目注意点：让vue识别全局方法/变量，引入的模块要声明，this的类型检查'
       //   )
       // })},
-      { icon: 'icon-web1', direction: 'Vue+TypeScript+Element的博客前台', list: Array({
-        name: '',
-        desc: Array(
-          '实现功能：登录注册、文章列表、github授权登录、点赞与评论、留言、文章归档',
-          '使用技术：vue/vuex+typescript+axios+element-ui', 
-          '项目注意点：让vue识别全局方法/变量，引入的模块要声明，this的类型检查'
-        )
-      })},
-      { icon: 'icon-web1', direction: 'react+Dva+Ant Design的博客后台管理系统', list: Array({
-        name: '',
-        desc: Array(
-          '实现功能：登录注册、文章列表、标签列表、个人介绍、点赞与评论、发文',
-          '使用技术：react+redux+dva+axios+antd', 
-          '项目实现：markdown渲染采用了开源的marked，代码高亮用了 highlight.js '
-        )
-      })},
-      { icon: 'icon-web1', direction: '基于node+express+mongodb的博客后台API', list: Array({
-        name: '',
-        desc: Array(
-          '实现功能： 登录、文章管理、标签管理、评论、留言管理、用户管理、友情链接管理、时间轴管理、身份验证',
-          '项目难点：各模块的列表都使用分页的形式，对用户身份进行验证和加密处理，评论是有状态的，管理员可设置是否显示该评论'
-        )
-      })}
+      // { icon: 'icon-web1', direction: 'react+Dva+Ant Design的博客后台管理系统', list: Array({
+      //   name: '',
+      //   desc: Array(
+      //     '实现功能：登录注册、文章列表、标签列表、个人介绍、点赞与评论、发文',
+      //     '使用技术：react+redux+dva+axios+antd', 
+      //     '项目实现：markdown渲染采用了开源的marked，代码高亮用了 highlight.js '
+      //   )
+      // })}
+      // { icon: 'icon-web1', direction: '基于node+express+mongodb的博客后台API', list: Array({
+      //   name: '',
+      //   desc: Array(
+      //     '实现功能： 登录、文章管理、标签管理、评论、留言管理、用户管理、友情链接管理、时间轴管理、身份验证',
+      //     '项目难点：各模块的列表都使用分页的形式，对用户身份进行验证和加密处理，评论是有状态的，管理员可设置是否显示该评论'
+      //   )
+      // })}
     )
 
     private skill: Array<{ icon: string, direction: string, list: Array<{ name: string, desc: string[] }> }> = Array(
