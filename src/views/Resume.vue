@@ -77,6 +77,7 @@
 														<li class="iconfont icon-wujiaoxing" v-html="value"></li>
 												</ul>
 										</div>
+                    <div v-if="index === 0"><br /></div>
 								</div>
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-gongju">
@@ -101,7 +102,7 @@
 														</ul>
 												</template>
 										</div>
-                    <div v-if="index === 3"><br /></div>
+                    <div v-if="index === 2"><br /></div>
 								</div>
 						</div>
 
@@ -183,10 +184,10 @@
         '项目描述：云电脑产品的商城端页面',
         '项目贡献：基础功能的独立开发,常用组件的封装，使用多坏境多入口打包，将pc端和移动端代码写在同一个项目中') 
       },
-      { name: '统计分析系统', time: '2020.05 - 至今', desc: Array(
-        '项目描述：基于Vue+Echarts开发的统计分析系统，主要负责业务统计部分的所有功能',
-        '项目贡献：编写可复用组件应用到项目中的图表显示中，数据使用excel导出') 
-      }
+      // { name: '统计分析系统', time: '2020.05 - 至今', desc: Array(
+      //   '项目描述：基于Vue+Echarts开发的统计分析系统，主要负责业务统计部分的所有功能',
+      //   '项目贡献：编写可复用组件应用到项目中的图表显示中，数据使用excel导出') 
+      // }
     )
 
     private project2: Array<{ name: string, time: string, desc: string[] }> = Array(
@@ -199,14 +200,14 @@
     )
 
     private personProjects: Array<{ icon: string, direction: string, list: Array<{ name: string, desc: string[] }> }> = Array(
-      { icon: 'icon-web1', direction: 'Vue+Typescript仿写CNode社区', list: Array({
-        name: 'https://lovelifeloveyou.github.io/vue-ts-cnode/',
-        desc: Array(
-          '基于Vue全家桶+TSX+TypeScript+Less实现的仿CNode中文社区项目',
-          '项目进度：基本实现了CNode中文社区的所有功能',
-          '拆分各个组件以供复用，使用vuex状态管理应用信息，使用typescript对各个参数进行严格的约定'
-        )
-      })},
+      // { icon: 'icon-web1', direction: 'Vue+Typescript仿写CNode社区', list: Array({
+      //   name: 'https://lovelifeloveyou.github.io/vue-ts-cnode/',
+      //   desc: Array(
+      //     '基于Vue全家桶+TSX+TypeScript+Less实现的仿CNode中文社区项目',
+      //     '项目进度：基本实现了CNode中文社区的所有功能',
+      //     '拆分各个组件以供复用，使用vuex状态管理应用信息，使用typescript对各个参数进行严格的约定'
+      //   )
+      // })},
       { icon: 'icon-web1', direction: 'Vue+TypeScript+Element的博客前台', list: Array({
         name: '',
         desc: Array(
