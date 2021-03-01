@@ -7,7 +7,7 @@
 			</div>
 			<img class="avatar" :src="avatar">
 			<ul class="message">
-				<li v-for="item in messages" class="iconfont-title" :class="item.icon">
+				<li v-for="(item, index) in messages" class="iconfont-title" :class="item.icon" :key="index">
 					<a :href="item.href" target="_blank">{{item.title}}</a>
 				</li>
 			</ul>
@@ -15,7 +15,6 @@
 		<div class="content" style="text-align: left;">
 				<div class="column-6">
 						<div class="section">
-								<!-- <title-wrapper zh="教育经历" en="Education" icon="icon-study"></title-wrapper> -->
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-study">
                   </div>
@@ -26,8 +25,8 @@
                     </h3>
                   </div>
                 </div>
-								<template v-for="edu in education">
-										<div class="sec-content">
+								<template v-for="(edu, index) in education">
+										<div class="sec-content" :key="index">
 												<div class="timeline-item">
 														<div class="timeline-title icon-tag iconfont-middle">
 																<span v-html="edu.school"></span>
@@ -41,7 +40,6 @@
 								</template>
 						</div>
 						<div class="section">
-								<!-- <title-wrapper zh="工作与项目经验" en="Experience" icon="icon-gongzuo"></title-wrapper> -->
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-gongzuo">
                   </div>
@@ -52,14 +50,14 @@
                     </h3>
                   </div>
                 </div>
-								<div class="sec-content" v-for="item in project">
+								<div class="sec-content" v-for="(item, index) in project1" :key="index">
 										<div class="timeline-item">
 												<div class="timeline-title iconfont-middle icon-gongju">
 														<span v-html="item.name"></span>
 														<span class="time" v-html="item.time"></span>
 												</div>
 												<div class="position" v-html="item.position"></div>
-												<ul v-for="value in item.desc">
+												<ul v-for="(value, i) in item.desc" :key="i">
 														<li class="iconfont icon-wujiaoxing" v-html="value"></li>
 												</ul>
 										</div>
@@ -68,7 +66,18 @@
 				</div>
 				<div class="column-6 column">
 						<div class="section">
-								<!-- <title-wrapper zh="技能" en="Skills" icon="icon-gongju"></title-wrapper> -->
+								<div class="sec-content" v-for="(item, index) in project2" :key="index">
+										<div class="timeline-item">
+												<div class="timeline-title iconfont-middle icon-gongju">
+														<span v-html="item.name"></span>
+														<span class="time" v-html="item.time"></span>
+												</div>
+												<div class="position" v-html="item.position"></div>
+												<ul v-for="(value, i) in item.desc" :key="i">
+														<li class="iconfont icon-wujiaoxing" v-html="value"></li>
+												</ul>
+										</div>
+								</div>
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-gongju">
                   </div>
@@ -79,25 +88,24 @@
                     </h3>
                   </div>
                 </div>
-								<div class="sec-content" v-for="(item, index) in personProjects">
+								<div class="sec-content" v-for="(item, index) in personProjects" :key="index">
 										<div class="time-line">
 												<div class="timeline-title iconfont-middle" :class="item.icon" v-html="item.direction"></div>
-												<template v-for="skillName in item.list">
-														<div v-if="skillName.name" class="skill-name">
+												<template v-for="(skillName, index) in item.list">
+														<div v-if="skillName.name" class="skill-name" :key="index">
                               <span style="color: #000;">项目预览：</span>
                               <span style="cursor: pointer;"  @click="view">{{skillName.name}}</span>
                             </div>
-														<ul v-for="value in skillName.desc">
+														<ul v-for="(value, i) in skillName.desc" :key="i">
 																<li class="iconfont icon-wujiaoxing" v-html="value"></li>
 														</ul>
 												</template>
 										</div>
-                    <div v-if="index === 3"><br /><br /></div>
+                    <div v-if="index === 3"><br /></div>
 								</div>
 						</div>
 
 						<div class="section">
-								<!-- <title-wrapper zh="技能" en="Skills" icon="icon-gongju"></title-wrapper> -->
                 <div class="sec-title-wrapper">
                   <div class="iconfont-big icon-tool">
                   </div>
@@ -108,12 +116,12 @@
                     </h3>
                   </div>
                 </div>
-								<div class="sec-content" v-for="item in skill">
+								<div class="sec-content" v-for="(item, index) in skill" :key="index">
 										<div class="time-line">
 												<div class="timeline-title iconfont-middle" :class="item.icon" v-html="item.direction"></div>
-												<template v-for="skillName in item.list">
-														<div class="skill-name" v-html="skillName.name"></div>
-														<ul v-for="value in skillName.desc">
+												<template v-for="(skillName, index) in item.list">
+														<div class="skill-name" v-html="skillName.name" :key="index"></div>
+														<ul v-for="(value, i) in skillName.desc" :key="i">
 																<li class="iconfont icon-wujiaoxing" v-html="value"></li>
 														</ul>
 												</template>
@@ -146,33 +154,48 @@
       { school: '景德镇陶瓷大学', time: '2015.09-2019.06', profession: '计算机科学与技术' }
     )
 
-    private project: Array<{ name: string, time: string, desc: string[] }> = Array(
-      { name: '工作经历', time: '2018.06 - 至今', position: '前端工程师', desc: Array(
+    private project1: Array<{ name: string, time: string, desc: string[] }> = Array(
+      { name: '工作经历', time: '2018.06 - 至今', position: 'Web前端工程师', desc: Array(
         '杭州才云科技有限公司    2018.06 - 2019.02',
-        '上海益政网络科技发展有限公司    2019.03 - 至今') 
+        '上海益政网络科技发展有限公司    2019.03 - 2020.05',
+        '上海达龙信息科技有限公司    2020.05-至今') 
       },
       { name: '国家电网Compass平台', time: '2018.06 - 2019.02', desc: Array(
         '项目描述：基于React/Redux开发后台多页面系统，主要负责登陆注册、报表、多语言等功能模块',
         '项目贡献：完成事项管理的所有关联，自动表单配置的重构，及其他基本功能的开发：编写基础组件封装到公司自研UI组件库、私有化部署npm包,js-xlsx+handsontable+ecahrts实现excel上传编辑然后显示成图表') 
       },
-      { name: '澳门智慧政务——受理系统', time: '2019.03 - 至今', desc: Array(
+      { name: '澳门智慧政务——受理系统', time: '2019.03 - 2020.05', desc: Array(
         '项目描述：基于Vue/Vuex+Element开发一窗系统，主要负责结果物领取、挂单、调单、材料签入签出、收费等功能模块',
         '项目痛点：自动表单渲染后的校验问题',
         '项目贡献：功能模块的独立开发，及完善searchTable组件的功能和基本功能的开发') 
       },
-      { name: '澳门智慧政务——运维平台', time: '2019.03 - 至今', desc: Array(
+      { name: '澳门智慧政务——运维平台', time: '2019.03 - 2020.05', desc: Array(
         '项目描述：基于，Vue/Vuex+Element开发后台系统，主要负责事项管理、自动表单配置、消息模板等功能模块',
         '项目痛点：自动表单配置所有的属性配置写在一个文件中，不具有可读性',
         '项目贡献：完成事项管理的所有关联，自动表单配置的重构，及其他基本功能的开发') 
       },
-      { name: '澳门公共服务一户通', time: '2019.03 - 至今', desc: Array(
+      { name: '澳门公共服务一户通', time: '2019.03 - 2020.05', desc: Array(
         '项目描述：基于Vue/Vuex+Element开发一网系统，主要负责事项受理流程、材料问答等功能模块',
         '项目贡献: 基本功能的独立开发，事项模糊搜索显示结果时先渲染骨架屏及关键字的突出') 
       },
-      { name: '澳门智慧政务——统计分析系统', time: '2019.03 - 至今', desc: Array(
+      { name: '云电脑商城端', time: '2020.05 - 至今', desc: Array(
+        '项目地址：https://www.dalongyun.com/',
+        '项目描述：云电脑产品的商城端页面',
+        '项目贡献：基础功能的独立开发,常用组件的封装，使用多坏境多入口打包，将pc端和移动端代码写在同一个项目中') 
+      },
+      { name: '统计分析系统', time: '2020.05 - 至今', desc: Array(
         '项目描述：基于Vue+Echarts开发的统计分析系统，主要负责业务统计部分的所有功能',
         '项目贡献：编写可复用组件应用到项目中的图表显示中，数据使用excel导出') 
-      },
+      }
+    )
+
+    private project2: Array<{ name: string, time: string, desc: string[] }> = Array(
+      { name: '云电脑流桌面', time: '2020.05 - 至今', desc: Array(
+        '项目地址: http://g.dalongyun.com/games',
+        '项目描述：基于webrtc的云游戏，实现用户在PC网页，手机上玩大型网游的移动端应用',
+        '项目贡献：封装移动端手势操作库，实现鼠标点击及触屏操作；封装自定义键盘；支持自定义开发，达到不同产品线自定义其中的UI；使用jsBridge与ios通信；对键盘列表的滚动进行优化，避免出现卡顿。',
+        '项目说明:此项目由我独立搭建，使用vue-cli3，其中自定义开发通过导出组件，放在CDN上供各产品线完成') 
+      }
     )
 
     private personProjects: Array<{ icon: string, direction: string, list: Array<{ name: string, desc: string[] }> }> = Array(
@@ -213,15 +236,14 @@
       { icon: 'icon-shezhi', direction: '技术技能', list: Array({
         name: '',
         desc: Array(
-          '熟悉使用Vue全家桶，有复杂系统开发经验',
-          '熟悉使用React技术框架，熟悉React Hooks的使用',
-          '了解Node.js的开发，使用MongoDB活MySql做数据存储',
-          '熟悉TypeScript的使用',
-          '熟练JavaScript，代码编写遵守规范，能够运用模块化、面向对象的方式编程',
+          '熟练使用Vue全家桶，有复杂系统开发经验',
+          '熟悉使用React技术框架，了解React Hooks的使用',
+          '了解Node.js的开发，使用MongoDB或MySql做数据存储',
+          '了解TypeScript的使用',
+          '熟练掌握JavaScript，代码编写遵守规范，能够运用模块化、面向对象的方式编程',
           '熟悉异步编程',
-          '能够编写语义化的HTML，模块化的CSS，实现常用呃布局，熟悉Less、Sass等CSS预处理器，了解HTML5/CSS3，并能熟练使用部分新特性',
-          '熟悉Webpack等前端自动化工具',
-          '熟悉团队开发Git或SVN的使用'
+          '能够编写语义化的HTML，模块化的CSS，实现常用布局，熟悉Less、Sass等CSS预处理器，了解HTML5/CSS3，并能熟练使用部分新特性',
+          '熟悉Webpack等前端自动化工具'
         )
       })}
     )
